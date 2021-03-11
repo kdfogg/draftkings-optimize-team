@@ -1,15 +1,17 @@
 ﻿using DraftKingsOptimizeTeam.Services;
 using System.Threading.Tasks;
+using System;
+using System.Linq;
 
 namespace DraftKingsOptimizeTeam
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
             var service = new DraftKingsService();
-            await service.LoginAsync();
-
+            var salaries = service.LoadSalaries(@"C:\Repos\draftkings-optimize-team\DraftKingsOptimizeTeam\.vscode\ImportCSV\DKSalaries.csv");
+            Console.WriteLine(salaries.Count);
             // var clientHttpClient();
             // client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes("username:password")));
             // var response = await client.GetStringAsync("https://google.com");
