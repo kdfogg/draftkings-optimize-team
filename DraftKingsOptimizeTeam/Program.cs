@@ -10,8 +10,9 @@ namespace DraftKingsOptimizeTeam
         static void Main(string[] args)
         {
             var service = new DraftKingsService();
-            var salaries = service.LoadSalaries(@"C:\Repos\draftkings-optimize-team\DraftKingsOptimizeTeam\.vscode\ImportCSV\DKSalaries.csv");
+            var salaries = service.LoadSalaries(@"C:\Users\kfogg\VSCodeProjects\DK-Team-Optimization\draftkings-optimize-team\DraftKingsOptimizeTeam\.vscode\ImportCSV\DKSalaries.csv");
             Console.WriteLine(salaries.Count);
+            service.CreateTeam(salaries);
             // var clientHttpClient();
             // client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes("username:password")));
             // var response = await client.GetStringAsync("https://google.com");

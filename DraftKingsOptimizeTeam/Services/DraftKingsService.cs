@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using DraftKingsOptimizeTeam.Models;
+using System.Linq;
 
 namespace DraftKingsOptimizeTeam.Services
 {
@@ -36,6 +37,36 @@ namespace DraftKingsOptimizeTeam.Services
             }
 
             return container;
+        }
+        public void CreateTeam(List<Salary> salaries) 
+        {
+            //Team consists of 2 Pitchers (P), Catcher (C), 1B, 2B, 3B, SS, and 3 OF
+            var grouped = salaries.GroupBy(s => s.RosterPosition).ToList();
+            var requiredPositions = new List<string>(){ "P", "P", "C", "1B", "2B", "3B", "SS", "OF", "OF", "OF"};
+            var lineUp = new List<Salary>();
+
+            while(requiredPositions.Count > 0){
+              
+              var findPosition = requiredPositions[0];
+
+            //   for (int i = 0; i < grouped.Count; i++)
+            //   {
+            //       var selectedGroup = grouped[i];
+            //       if(selectedGroup.Key == findPosition){
+            //           lineUp.Add(selectedGroup.First());
+            //       }
+            //   }
+
+   
+              var selectedGroup = grouped.Where(salaryByPosition => salaryByPosition.Key == findPosition).First();
+              var selectedPlayer = selectedGroup.First();
+           
+              lineUp.Add(selectedPlayer);
+              requiredPositions.RemoveAt(0);
+            }
+
+            
+
         }
     }
 }
